@@ -98,10 +98,20 @@ function Todo() {
       <ul className="mb-12">
         {todos.map((i) => (
           <li
-            className="max-w-screen-md mx-auto rounded-xl mt-4 px-12 py-6 shadow-xl bg-slate-200 text-xl font-semibold flex justify-between"
+            className="max-w-screen-md mx-auto rounded-xl mt-4 px-12 py-6 shadow-xl bg-slate-200 text-xl font-semibold flex justify-between items-center relative group"
             key={i.id}
           >
-            {i.title}
+            <div className="relative w-full max-w-xs">
+              <span className="truncate block">
+                {i.title.length > 15 ? i.title.slice(0, 15) + "..." : i.title}
+              </span>
+              {i.title.length > 15 && (
+                <div className="absolute inset-0 flex items-center justify-center bg-slate-200 text-black p-2 border  rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                  {i.title}
+                </div>
+              )}
+            </div>
+
             <div className="flex justify-between gap-5">
               <button
                 onClick={() => {
